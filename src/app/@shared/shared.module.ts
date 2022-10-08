@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-
-import { LoaderComponent } from './loader/loader.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActionCardComponent } from './action-card/action-card.component';
+import { AppMaterialModule } from './material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  imports: [
-    TranslateModule,
-    CommonModule
-  ],
-  declarations: [
-    LoaderComponent
-  ],
-  exports: [
-    LoaderComponent
-  ]
+  imports: [BrowserAnimationsModule, CommonModule, AppMaterialModule, FlexLayoutModule, ReactiveFormsModule],
+  declarations: [ActionCardComponent],
+  exports: [ActionCardComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

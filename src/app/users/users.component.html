@@ -1,0 +1,25 @@
+<ng-container *ngIf="{ cards: cards$ | async, allUsersActive: allUsersActive$ | async } as _">
+  <div fxFlex fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <ng-container>
+      <app-action-card [cardType]="'SAVE'" (createNewEntity)="addUser($event)"></app-action-card>
+      <app-action-card
+        (deleteAll)="deleteAllUsers()"
+        (editAll)="editAllUsers()"
+        (saveAll)="saveAllUsers()"
+        [cardType]="_.allUsersActive ? 'SAVE_ALL' : 'MODIFY_ALL'"
+      ></app-action-card>
+      <ng-container>
+        <app-action-card
+          #userNames
+          (deleteEntity)="deleteCurrentUser(card.name)"
+          (setEntityEditOn)="editCurrentUser(card.name)"
+          (saveEdits)="saveEdits(card.name, $event)"
+          *ngFor="let card of _.cards"
+          [cardType]="card.active ? 'EDIT' : 'VIEW'"
+          [editDisabled]="!card.active"
+          [name]="card.name"
+        ></app-action-card>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>

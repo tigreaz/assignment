@@ -1,9 +1,8 @@
 @import "src/theme/theme-variables";
 
-.navbar {
-  margin-bottom: $spacer;
-}
-
-.nav-link.dropdown-toggle {
-  cursor: pointer;
+.header {
+  background-color: #212529;
+  vertical-align: top;
+  height: 100px;
+  margin-bottom: 20px;
 }

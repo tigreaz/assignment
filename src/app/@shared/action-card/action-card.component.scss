@@ -1,0 +1,46 @@
+mat-card {
+  padding-top: 0%;
+  padding-bottom: 0%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+.container {
+  min-height: 100px;
+  flex-shrink: 3;
+  button {
+    width: 80px;
+  }
+  input {
+    min-height: 30px;
+  }
+
+  .create-entity-field {
+    min-width: 20%;
+    margin-right: 15px;
+  }
+  .entry {
+    border: 1px solid black;
+    min-height: 100px;
+    flex-direction: row;
+    flex: 1 1;
+    input {
+      margin-left: 2%;
+      height: fit-content;
+      border: 1px solid black;
+    }
+    .expander {
+      flex-shrink: 10;
+    }
+    .readonly {
+      border: 0px solid !important;
+    }
+    .viewButtons {
+      margin-right: 2%;
+    }
+    .edit-single-button {
+      button {
+        margin-right: 20%;
+      }
+    }
+  }
+}

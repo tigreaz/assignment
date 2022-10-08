@@ -1,0 +1,86 @@
+<mat-card>
+  <div class="container" fxLayoutAlign="space-between center" [ngSwitch]="cardType">
+    <ng-container *ngSwitchCase="'SAVE'">
+      <ng-container *ngTemplateOutlet="save"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'EDIT'">
+      <ng-container *ngTemplateOutlet="edit"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'MODIFY_ALL'">
+      <ng-container *ngTemplateOutlet="modify_all"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'SAVE_ALL'">
+      <ng-container *ngTemplateOutlet="save_all"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'VIEW'">
+      <ng-container *ngTemplateOutlet="view"></ng-container>
+    </ng-container>
+  </div>
+</mat-card>
+
+<ng-template #save>
+  <div fxFlex fxLayout="column" fxLayoutGap="20px">
+    <div fxFlex fxLayout="column">
+      <div fxFlex fxLayout="row">
+        <mat-label>Add New User</mat-label>
+      </div>
+      <div fxFlex fxLayout="row">
+        <mat-form-field appearance="outline" class="create-entity-field">
+          <input fxFlex="40" matInput #entityName />
+        </mat-form-field>
+        <button mat-mini-fab (click)="addNewEntity(entityName.value); entityName.value = ''">
+          {{ saveButtonTitle }}
+        </button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</ng-template>
+
+<ng-template #edit>
+  <div class="entry" fxFlex fxLayout="row" fxLayoutAlign="start center">
+    <input
+      fxFlex="40"
+      [attr.disabled]="editDisabled"
+      matInput
+      #uname
+      [formControl]="controlName"
+      appearance="outline"
+    />
+    <span fxFlex="45" class="expander"></span>
+    <div class="edit-single-button" fxFlex fxLayoutGap="10px" fxLayoutAlign="center center">
+      <button mat-mini-fab (click)="saveCurrentEdits(uname.value)">{{ saveButtonTitle }}</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #view>
+  <div fxFlex class="entry" fxLayout="row" fxLayoutAlign="start center">
+    <input fxFlex="40" [readonly]="editDisabled" ngClass="readonly" matInput [value]="name" />
+    <span fxFlex class="expander"></span>
+    <div
+      class="viewButtons"
+      fxLayoutGap="10px"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+      fxLayout.sm="column"
+      fxLayout.xs="column"
+    >
+      <button mat-mini-fab (click)="setActiveForEdit(name)">{{ editButtonTitle }}</button>
+      <button mat-mini-fab (click)="deleteSelectedEntity()">{{ deleteButtonTitle }}</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #modify_all>
+  <div fxLayoutGap="10px">
+    <button mat-mini-fab (click)="editAllEntities()">{{ editAllButtonTitle }}</button>
+    <button mat-mini-fab (click)="deleteAllEntities()">{{ deleteAllButtonTitle }}</button>
+  </div>
+</ng-template>
+
+<ng-template #save_all>
+  <div fxLayoutGap="10px">
+    <button mat-mini-fab (click)="saveAllEntities()">{{ saveAllButtonTitle }}</button>
+  </div>
+</ng-template>
